@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .task-item {
+        border-left: 5px solid #eee;
+    }
+
+    .task {
+        border-color: green;
+    }
+
+    .notification {
+        border-color: goldenrod;
+    }
+</style>
+
+<div ng-app="firstApp">
+    <div class="row">
+        <div class="col-lg-4" ng-controller="PanelCtrl">
+            <div class="panel">
+                <header class="panel-heading">
+                    Panel heading without title
+                    <span class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isVisible, 'glyphicon-chevron-up': !isVisible}" ng-click="toggle()"></span>
+                </header>
+                <div class="panel-body" ng-show="isVisible" ng-controller="TaskTapeCtrl">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="task in tasks" class="task-item {{task.type}}">
+                            <h4>{{task.name}} <input type="checkbox" class="pull-right" ng-model="task.done"></h4>
+                            <p>{{task.description}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel">
+                <header class="panel-heading">Panel heading without title</header>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel">
+                <header class="panel-heading">Panel heading without title</header>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Js/app.js")
+    @Scripts.Render("~/Js/TaskTape/taskServices.js")
+    @Scripts.Render("~/Js/Panel/panelCtrl.js")
+    @Scripts.Render("~/Js/TaskTape/taskTapeCtrl.js")
+    
+}
