@@ -26,7 +26,7 @@
                 <div class="panel-body" ng-show="isVisible" ng-controller="TaskTapeCtrl">
                     <ul class="list-unstyled">
                         <li ng-repeat="task in tasks" class="task-item {{task.type}}">
-                            <h4>{{task.name}} <input type="checkbox" class="pull-right" ng-model="task.done"></h4>
+                            <h4>{{task.name}} <input type="checkbox" class="pull-right" ng-change="taskChange(task)" ng-model="task.done"></h4>
                             <p>{{task.description}}</p>
                         </li>
                     </ul>

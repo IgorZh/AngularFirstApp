@@ -5,9 +5,8 @@
     //    { id: 2, name: "another task", type: "notification", description: "do this" }
     //];
     $scope.tasks = Task.query();
-    
-    $scope.$watchCollection("tasks", function (newValue, oldValue) {
-        console.log(newValue);
-        console.log(oldValue);
-    });
+
+    $scope.taskChange = function(task) {
+        task.$update();
+    };
 }
