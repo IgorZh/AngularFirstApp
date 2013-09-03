@@ -7,6 +7,6 @@
     $scope.tasks = Task.query();
 
     $scope.taskChange = function(task) {
-        task.$update();
+        task = task.$update(task);
     };
 }
