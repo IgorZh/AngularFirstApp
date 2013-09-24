@@ -667,6 +667,45 @@
     </ItemGroup>
     <Copy SourceFiles="@(ApplicationFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)"/>
   </Target>
+  <!-- Packages and copies the web application files required by a web publishing step -->
+  <Target Name="DeployWeb" DependsOnTargets="DeleteBinFiles;Package;CopyWeb;CopyConfigs" />
+
+  <!-- Deletes all previous files from directory -->
+  <Target Name="DeleteBinFiles">
+    <Message Text="Deleting bin files from $(DestinationPath)" />
+    <ItemGroup>
+      <FilesToDelete Include="$(DestinationPath)\**\*.*"/>
+
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+
+  </Target>
+
+  <Target Name="Package">
+    <Message Text="Packaging project..." />
+    <MSBuild Projects="$(ProjectFile)" ContinueOnError="false" Targets="Package" Properties="Configuration=$(Configuration)" />
+
+  </Target>
+
+  <Target Name="CopyWeb">
+    <Message Text="Copying project files from" />
+    <ItemGroup>
+      <PackagedFiles Include="$(PackagedProjectDir)\**\*.*"/>
+
+    </ItemGroup>
+    <Copy SourceFiles="@(PackagedFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)"/>
+
+  </Target>
+
+  <Target Name="CopyConfigs">
+    <Message Text="Copying configuration files from $(PackagedProjectWebConfigDir) to $(DestinationPath)..." />
+    <ItemGroup>
+      <ConfigFiles Include="$(PackagedProjectWebConfigDir)\**\*.*"/>
+
+    </ItemGroup>
+    <Copy SourceFiles="@(ConfigFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)"/>
+
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
