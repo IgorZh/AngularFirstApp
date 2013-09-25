@@ -31,6 +31,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabases>true</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -198,7 +201,7 @@
   <ItemGroup>
     <Content Include="Content\css\bootstrap-glyphicons.css" />
     <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphiconshalflings-regular.svg" />
     <Content Include="Content\main.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -261,6 +264,8 @@
     <Content Include="Content\fonts\glyphiconshalflings-regular.otf" />
     <Content Include="Content\fonts\glyphiconshalflings-regular.ttf" />
     <Content Include="Content\fonts\glyphiconshalflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\Dev.pubxml" />
+    <None Include="Properties\PublishProfiles\vs2008-40-11.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Js\app.js" />
     <Content Include="Js\Panel\panelCtrl.js" />
@@ -624,6 +629,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <None Include="Web.Deploy-Dev.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -634,6 +642,16 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deploy-Dev|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <IncludeIisSettings>false</IncludeIisSettings>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -647,7 +665,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>59486</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:23791/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
@@ -660,52 +678,45 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="DeployApp">
+  <!--<Target Name="DeployApp">
     <Message Text="Copying application files..." />
     <ItemGroup>
       <ApplicationFiles Include="$(ApplicationOutputDirectory)\**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(ApplicationFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(ApplicationFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)" />
   </Target>
+  -->
   <!-- Packages and copies the web application files required by a web publishing step -->
+  <!--
   <Target Name="DeployWeb" DependsOnTargets="DeleteBinFiles;Package;CopyWeb;CopyConfigs" />
-
+  -->
   <!-- Deletes all previous files from directory -->
+  <!--
   <Target Name="DeleteBinFiles">
     <Message Text="Deleting bin files from $(DestinationPath)" />
     <ItemGroup>
-      <FilesToDelete Include="$(DestinationPath)\**\*.*"/>
-
+      <FilesToDelete Include="$(DestinationPath)\**\*.*" />
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
-
   </Target>
-
   <Target Name="Package">
     <Message Text="Packaging project..." />
     <MSBuild Projects="$(ProjectFile)" ContinueOnError="false" Targets="Package" Properties="Configuration=$(Configuration)" />
-
   </Target>
-
   <Target Name="CopyWeb">
     <Message Text="Copying project files from" />
     <ItemGroup>
-      <PackagedFiles Include="$(PackagedProjectDir)\**\*.*"/>
-
+      <PackagedFiles Include="$(PackagedProjectDir)\**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(PackagedFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)"/>
-
+    <Copy SourceFiles="@(PackagedFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)" />
   </Target>
-
   <Target Name="CopyConfigs">
     <Message Text="Copying configuration files from $(PackagedProjectWebConfigDir) to $(DestinationPath)..." />
     <ItemGroup>
-      <ConfigFiles Include="$(PackagedProjectWebConfigDir)\**\*.*"/>
-
+      <ConfigFiles Include="$(PackagedProjectWebConfigDir)\**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(ConfigFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)"/>
-
-  </Target>
+    <Copy SourceFiles="@(ConfigFiles)" DestinationFolder="$(DestinationPath)\%(RecursiveDir)" />
+  </Target>-->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
