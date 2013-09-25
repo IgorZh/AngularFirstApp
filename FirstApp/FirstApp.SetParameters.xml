@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <setParameter name="IIS Web Application Name" value="AngularApp" />
-  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-FirstApp-20130817215527;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-FirstApp-20130817215527.mdf" />
-  <setParameter name="FirstAppContext-Web.config Connection String" value="Data Source=(localdb)\v11.0; Initial Catalog=FirstAppContext-20130818194531; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|FirstAppContext-20130818194531.mdf" />
-</parameters>
