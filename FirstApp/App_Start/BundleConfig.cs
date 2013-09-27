@@ -11,8 +11,7 @@ namespace FirstApp
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/angular.js",
-                        "~/Scripts/angular-resource.js"
-                        ));
+                        "~/Scripts/angular-resource.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
@@ -29,8 +28,7 @@ namespace FirstApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/css/bootstrap.css",
                 "~/Content/css/bootstrap-glyphicons.css",
-                "~/Content/main.css"
-                ));
+                "~/Content/main.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
