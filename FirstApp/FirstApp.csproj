@@ -44,7 +44,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <DeployOnBuild Condition=" '$(DeployFirstApp)'!='' ">$(DeployFirstApp)</DeployOnBuild>
+    <DeployOnBuild Condition=" '$(DeployProject)'!='' ">$(DeployProject)</DeployOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
